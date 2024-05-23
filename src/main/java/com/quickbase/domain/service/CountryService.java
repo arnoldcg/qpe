@@ -1,5 +1,6 @@
 package com.quickbase.domain.service;
 
+import com.quickbase.domain.dto.PopulationByCountry;
 import com.quickbase.domain.entity.Country;
 
 import java.sql.SQLException;
@@ -12,7 +13,7 @@ public interface CountryService {
 
     long getPopulation(long countryId) throws SQLException;
 
-    public void populationByCountry();
+    List<PopulationByCountry> populationByCountry();
 
     List<Country> getAllCountries();
 
