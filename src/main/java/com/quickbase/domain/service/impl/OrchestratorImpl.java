@@ -33,12 +33,21 @@ public class OrchestratorImpl implements Orchestrator {
 
 
     @Override
-    public void configureApplication() throws SQLException, IOException {
+    public void configureApplication(String[] args) throws SQLException, IOException {
         log.info("Starting application configuration. \n");
+
+        String databaseLocation = "resources/data/citystatecountry.db";
+        if(args.length > 0) {
+            databaseLocation = args[0];
+            log.info("Database location: " + databaseLocation);
+        }
+        else {
+            log.info("Using default route: database location: 'resources/data/citystatecountry.db'");
+        }
 
         log.info("Creating database connection.");
         this.configureDBService = new ConfigureDBServiceImpl();
-        configureDBService.createDBConnection();
+        configureDBService.createDBConnection(databaseLocation);
         JdbcPooledConnectionSource connectionSource = configureDBService.getConnection();
         log.info("Connection to database created successfully...\n");
 
@@ -54,7 +63,7 @@ public class OrchestratorImpl implements Orchestrator {
         log.info("Configuring the writers.");
         ObjectMapper mapper = new ObjectMapper();
         this.jsonWriter = mapper.writer(new DefaultPrettyPrinter());
-        this.csvWriter = new CSVWriter(new FileWriter("population_by_country.csv"));
+        this.csvWriter = new CSVWriter(new FileWriter("output/population_by_country.csv"));
     }
 
     @Override
@@ -81,7 +90,7 @@ public class OrchestratorImpl implements Orchestrator {
 
 
         log.info("Writing json file.");
-        this.jsonWriter.writeValue(new File("population_by_country.json"), populationByCountries);
+        this.jsonWriter.writeValue(new File("output/population_by_country.json"), populationByCountries);
 
         log.info("Writing csv file.\n");
         String[] entries = {"countryName", "totalPopulation"};
