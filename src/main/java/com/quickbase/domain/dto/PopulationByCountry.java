@@ -23,6 +23,11 @@ public class PopulationByCountry {
 
     private long totalPopulation;
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public boolean equals(Object obj) {
 
         if (this == obj)
