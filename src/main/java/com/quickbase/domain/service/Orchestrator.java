@@ -7,6 +7,5 @@ public interface Orchestrator {
 
     void checkServiceHealth() throws SQLException;
     void retrieveTotalPopulationByCountry();
-
     void closeApplication() throws SQLException;
 }

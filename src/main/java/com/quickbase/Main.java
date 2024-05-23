@@ -11,26 +11,17 @@ import java.sql.SQLException;
  * to demonstrate in a different way (e.g. if you're using a framework)
  */
 public class Main {
-    public static void main(String args[]) throws SQLException {
-        Orchestrator orchestrator = new OrchestratorImpl();
-        orchestrator.configureApplication();
-        orchestrator.checkServiceHealth();
-
-        orchestrator.retrieveTotalPopulationByCountry();
-
-
-        orchestrator.closeApplication();
-
-//        System.out.print("Getting DB Connection...");
-//
-//        DBManager dbm = new DBManagerImpl();
-//        Connection c = dbm.getConnection();
-
-
-//        if (null == c ) {
-//            System.out.println("failed.");
-//            System.exit(1);
-//        }
-//        System.exit(1);
+    public static void main(String args[]) throws Exception {
+        try{
+            Orchestrator orchestrator = new OrchestratorImpl();
+            orchestrator.configureApplication();
+            orchestrator.checkServiceHealth();
+            orchestrator.retrieveTotalPopulationByCountry();
+            orchestrator.closeApplication();
+        }
+        catch (Exception e){
+            System.out.println("Failed execution of the program.");
+            System.exit(1);
+        }
     }
 }
