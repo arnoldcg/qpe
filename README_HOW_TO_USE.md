@@ -22,7 +22,9 @@ settings.gradle
 ```
 
 ## Intellij Idea + Java Application Configuration
-One of the options to use the solution is to configure the IDE to run a Java Application
+One of the options to use the solution is to configure the IDE to run a Java Application. 
+The other one is run the application using docker. In the next steps both processes are described.
+
 
 ### Prerequisites
 1. Java 8 installed on the environment (temurin-1.8 preferebly) 
@@ -43,5 +45,69 @@ One of the options to use the solution is to configure the IDE to run a Java App
 3. Check the output in the console and in the output folder in the project. 
 
 ## Expected Output
-All the output produced by the project will be stored in the **output** directory
+All the output produced by the project will be stored in the **output** directory.
 
+## Output structure
+```text
+>output                                       -- Folder where will be store the output of the project
+  |__ population_by_country.csv               -- Population of the countries in csv format
+  |__ population_by_country.json              -- Population of the countries in json format  
+```
+
+## Output example csv
+| countryName         | totalPopulation |
+|---------------------|-----------------|
+| Armenia             | 3249482         |
+| Aruba (Netherlands) | 101484          |
+| Bahrain             | 1234571         |
+| Belarus             | 9480178         |
+| Bhutan              | 695822          |
+| Botswana            | 2029307         |
+| Canada              | 27147274        |
+| Chile               | 17094270        |
+| Dominican Republic  | 9884371         |
+| Egypt               | 78728000        |
+| Germany             | 81802257        |
+| Greece              | 11305118        |
+| Guernsey            | 61570           |
+| India               | 1210854977      |
+| Kyrgyzstan          | 5418300         |
+| Laos                | 6230200         |
+
+## Output example json
+```json
+[
+  {
+    "countryName": "Armenia",
+    "totalPopulation": 3249482
+  },
+  {
+    "countryName": "Aruba (Netherlands)",
+    "totalPopulation": 101484
+  },
+  {
+    "countryName": "Bahrain",
+    "totalPopulation": 1234571
+  },
+  {
+    "countryName": "Belarus",
+    "totalPopulation": 9480178
+  },
+  {
+    "countryName": "Bhutan",
+    "totalPopulation": 695822
+  },
+  {
+    "countryName": "Botswana",
+    "totalPopulation": 2029307
+  },
+  {
+    "countryName": "Canada",
+    "totalPopulation": 27147274
+  },
+  {
+    "countryName": "Chile",
+    "totalPopulation": 17094270
+  }
+]
+```
