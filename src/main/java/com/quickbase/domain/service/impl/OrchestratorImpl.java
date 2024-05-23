@@ -94,5 +94,6 @@ public class OrchestratorImpl implements Orchestrator {
     public void closeApplication() throws SQLException, IOException {
         this.configureDBService.closeDBConnection();
         this.csvWriter.close();
+        log.info("Program successfully finished. Was a pleasure Quickbase: Arnold Castroman Garcia");
     }
 }
