@@ -8,9 +8,12 @@ repositories {
 dependencies {
     compile  'org.xerial:sqlite-jdbc:3.8.11.1'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.3.2'
-    // https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-jdbc
-    compile group: 'com.j256.ormlite', name: 'ormlite-jdbc', version: '4.48'
 
+    //Extra dependencies
+    compile group: 'com.j256.ormlite', name: 'ormlite-jdbc', version: '4.48'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.32'
+
+    annotationProcessor "org.projectlombok:lombok:1.18.32"
 }
 jar {
     manifest {
