@@ -1,6 +1,9 @@
 package com.quickbase.devint;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * This DBManager implementation provides a connection to the database containing population data.

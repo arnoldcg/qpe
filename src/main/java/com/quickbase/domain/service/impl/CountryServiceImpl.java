@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -25,6 +27,14 @@ public class CountryServiceImpl implements CountryService {
     private final StateService stateService;
 
     private final ConcreteStatService concreteStatService;
+
+    private static HashMap<String, String> similarNames = new HashMap<>();
+
+    static {
+        similarNames.put("United States of America", "U.S.A.");
+        similarNames.put("U.S.A.", "United States of America");
+    }
+
 
     public CountryServiceImpl(Dao<Country, Long> cityDao, StateService stateService) {
         this.countryDao = cityDao;
@@ -52,15 +62,15 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public void populationByCountry() {
+    public List<PopulationByCountry> populationByCountry() {
 
         List<PopulationByCountry> populationByCountriesSQL = getCountryInformationFromDB();
         List<PopulationByCountry> populationByCountriesList = POPULATION_BY_COUNTRY_MAPPER
                 .bindList(this.concreteStatService.GetCountryPopulations());
         List<PopulationByCountry> combinedList = POPULATION_BY_COUNTRY_MAPPER
-                .combineCountryInformation(populationByCountriesSQL, populationByCountriesList);
+                .combineCountryInformation(populationByCountriesSQL, populationByCountriesList, similarNames);
 
-        long x = 0;
+        return combinedList;
     }
 
     private List<PopulationByCountry> getCountryInformationFromDB() {
@@ -72,7 +82,7 @@ public class CountryServiceImpl implements CountryService {
                     .bindSQL(country, countryPopulation);
             populationByCountries.add(tempItem);
         });
-
+        populationByCountries.sort(Comparator.comparing(PopulationByCountry::getCountryName));
         return populationByCountries;
     }
 
