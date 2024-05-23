@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  jar:
+    container_name: qpe-jar
+    build: .
+    volumes:
+      - ./output:/qpe/build/libs/output

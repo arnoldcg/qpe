@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public interface Orchestrator {
-    void configureApplication() throws SQLException, IOException;
+    void configureApplication(String[] args) throws SQLException, IOException;
 
     void checkServiceHealth() throws SQLException;
     void retrieveTotalPopulationByCountry() throws Exception;

@@ -9,16 +9,16 @@ import com.quickbase.domain.service.impl.OrchestratorImpl;
  * to demonstrate in a different way (e.g. if you're using a framework)
  */
 public class Main {
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
         try {
             Orchestrator orchestrator = new OrchestratorImpl();
-            orchestrator.configureApplication();
+            orchestrator.configureApplication(args);
             orchestrator.checkServiceHealth();
             orchestrator.retrieveTotalPopulationByCountry();
             orchestrator.closeApplication();
         } catch (Exception e) {
             System.out.println("Failed execution of the program.");
-            System.exit(1);
+            throw e;
         }
     }
 }

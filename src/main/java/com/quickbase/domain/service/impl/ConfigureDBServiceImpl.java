@@ -12,10 +12,10 @@ public class ConfigureDBServiceImpl implements ConfigureDBService {
     private JdbcPooledConnectionSource jdbcPooledConnectionSource;
 
     @Override
-    public void createDBConnection() throws SQLException {
+    public void createDBConnection(String databaseLocation) throws SQLException {
 
         this.jdbcPooledConnectionSource
-                = new JdbcPooledConnectionSource("jdbc:sqlite:resources/data/citystatecountry.db");
+                = new JdbcPooledConnectionSource(String.format("jdbc:sqlite:%s", databaseLocation));
 
         log.info("Created connection to database: citystatecountry.db");
     }
@@ -26,8 +26,7 @@ public class ConfigureDBServiceImpl implements ConfigureDBService {
 
             this.jdbcPooledConnectionSource.close();
             log.warn("Closed connection to database: citystatecountry.db");
-        }
-        else{
+        } else {
             log.error("Connection to database is not defined.");
         }
     }
