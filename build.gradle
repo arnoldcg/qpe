@@ -12,8 +12,17 @@ dependencies {
     //Extra dependencies
     compile group: 'com.j256.ormlite', name: 'ormlite-jdbc', version: '4.48'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.32'
+    implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+    implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.45.3.0'
+    implementation("org.slf4j:slf4j-api:1.6.1")
+    implementation("org.slf4j:slf4j-simple:1.6.1")
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.17.0'
 
     annotationProcessor "org.projectlombok:lombok:1.18.32"
+
+    //Map structs dependencies to handle bind annotations
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 }
 jar {
     manifest {

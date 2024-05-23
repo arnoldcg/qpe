@@ -1,9 +1,9 @@
 package com.quickbase;
 
-import com.quickbase.devint.DBManager;
-import com.quickbase.devint.DBManagerImpl;
+import com.quickbase.domain.service.Orchestrator;
+import com.quickbase.domain.service.impl.OrchestratorImpl;
 
-import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * The main method of the executable JAR generated from this repository. This is to let you
@@ -11,16 +11,26 @@ import java.sql.Connection;
  * to demonstrate in a different way (e.g. if you're using a framework)
  */
 public class Main {
-    public static void main( String args[] ) {
-        System.out.println("Starting.");
-        System.out.print("Getting DB Connection...");
+    public static void main(String args[]) throws SQLException {
+        Orchestrator orchestrator = new OrchestratorImpl();
+        orchestrator.configureApplication();
+        orchestrator.checkServiceHealth();
 
-        DBManager dbm = new DBManagerImpl();
-        Connection c = dbm.getConnection();
-        if (null == c ) {
-            System.out.println("failed.");
-            System.exit(1);
-        }
+        orchestrator.retrieveTotalPopulationByCountry();
 
+
+        orchestrator.closeApplication();
+
+//        System.out.print("Getting DB Connection...");
+//
+//        DBManager dbm = new DBManagerImpl();
+//        Connection c = dbm.getConnection();
+
+
+//        if (null == c ) {
+//            System.out.println("failed.");
+//            System.exit(1);
+//        }
+//        System.exit(1);
     }
 }
